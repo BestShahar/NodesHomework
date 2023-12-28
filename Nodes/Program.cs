@@ -47,8 +47,32 @@ public class Node<T>
     }
 }
 
-public class Program
+public class Program<T>
 {
+    public static void AddToStart(Node<T>node, Node<T>lst)
+    {
+        node.SetNext(lst);
+    }
+    public static void AddToEnd(Node<T> node, Node<T> lst)
+    {
+       while (lst.HasNext() == true)
+        {
+            lst = lst.GetNext();
+            AddToEnd(node, lst);
+        }
+        
+    }
+    
+    public static void Add2Middle(Node<int>node, Node<int>lst)
+    { 
+        while (lst.HasNext() == true&&lst.GetNext().GetValue()<node.GetValue())
+        {
+            lst = lst.GetNext(); 
+        }
+        node.SetNext(lst.GetNext());
+        lst.SetNext(node);
+   
+    }
     //פעולה המקבלת מצביע לחוליה 
     //מחזירה אמת אם החוליות מסודרות בסדר עולה
     //ושקר אחרת
